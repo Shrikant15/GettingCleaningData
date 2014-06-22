@@ -1,32 +1,88 @@
-Getting and Cleaning Data Project 
-=================================
+Data Dictionary - Getting and Cleaning Data Project 
+===================================================
 
-##Introduction
+##Feature Selection 
 
-This project uses "Human Activity Recognition Using Smartphones" Data Set , available on
-<a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones/">UC Irvine Machine Learning Repository</a>, a popular repository for machine learning
-datasets. This data set is provided on coursera web site using link
+Average is taken from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ for each Activity and for each subject.
+The set of Average variables that were calculated are based on 1 . mean(): Mean value and 2.std(): Standard deviation measurements only.
+Other set of variables like min(),max(),mad() etc. are ignored.
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.Please note that 't' indicate time domain and'f' indicate frequency domain signals.
 
-* <b>Dataset</b>: <a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip/">Human Activity Recognition</a>
+*Following variables are present in the final tidy data set <b>tidy_data_set.txt</b>,created by <a href="https://github.com/Shrikant15/GettingCleaningData/blob/master/run_analysis.R/">run_analysis.R</a> in the current working directory
+ 
+ActivityName                        : Identify which activity subject was performing while taking measurements.Character data,
+                                      WALKING,WALKING_UPSTAIRS,WALKING_DOWNSTAIRS,SITTING,STANDING,LAYING
+SubjectId                           : An identifier of the subject who carried out the experiment.Integer data , ranging from 1-30.
+Average-tBodyAcc-mean-X             : Average of Body Linear Acceleration mean on X axis   
+Average-tBodyAcc-mean-Y				: Average of Body Linear Acceleration mean on Y axis
+Average-tBodyAcc-mean-Z				: Average of Body Linear Acceleration mean on Z axis
+Average-tBodyAcc-std-X              : Average of Body Linear Acceleration standard deviation on X axis
+Average-tBodyAcc-std-Y              : Average of Body Linear Acceleration standard deviation on Y axis
+Average-tBodyAcc-std-Z              : Average of Body Linear Acceleration standard deviation on Z axis
+Average-tGravityAcc-mean-X          : Average of Gravity Acceleration mean on X axis    
+Average-tGravityAcc-mean-Y          : Average of Gravity Acceleration mean on Y axis
+Average-tGravityAcc-mean-Z          : Average of Gravity Acceleration mean on Z axis
+Average-tGravityAcc-std-X           : Average of Gravity Acceleration standard deviation on X axis
+Average-tGravityAcc-std-Y           : Average of Gravity Acceleration standard deviation on Y axis
+Average-tGravityAcc-std-Z           : Average of Gravity Acceleration standard deviation on Z axis
 
-## Loading of Data
+Similarly, Average of Mean and Standard Deviation of following measurements were also taken
+*Jerk Signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ) were taken.
+*Magnitude of these three-dimensional signals -(tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+*Fast Fourier Transform (FFT) applied signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. 
 
-* Script <b>run_analysis.R</b> is created for loading and processing.This script is present here <a href="https://github.com/Shrikant15/GettingCleaningData/blob/master/run_analysis.R/">run_analysis.R</a>
-  Firstly,all the data files are downloaded and imported in R as data frames using read.table function.These files include 
-  * Training and Test data set ('test/X_test.txt' and 'train/X_train.txt')
-  * Training and Test Activity labels   ('train/y_train.txt' and 'test/y_test.txt')
-  * Training and Test SubjectId data  ('train/subject_train.txt' and 'test/subject_test.txt')
-  * 'activity_labels.txt': Map Activity labels (ID) with the name/description
-  * 'features.txt': List of all the measured variables  
-
-## Processing of Data 
-
-* Raw test and training data sets('X_test.txt' and 'X_train.txt') Data Frames are merged together using rbind .
-* Subset of merged data created only for mean and standard deviation columns using grep on mean() and std() on variable names of features.txt data frame.
-* Combine SubjectId and Activity Name data frames and rename the variables properly by removing ()
-* Finally, tidy data set <b>tidy_data_set.txt</b> is created in current working directory.
-* This uploaded tidy data set has 180 records (6 Activity for each of 30 subjects) with 68 variables.
-* First 2 variables are ActivityName and SubjectId with remaining 66 as Average of Mean and Standard Deviation for various body and total acceleration measurements as well as angular velocity measurements
-* Average is calculated using aggregate function , mean by ActivityName and SubjectID.
-* "Average-" word has been prefixed for summarized variable names.
-* More details about columns/variables of tidy data set <b>tidy_data_set.txt</b> are available in <b>CodeBook.md</b>
+##Variables for above measurements
+Average-tBodyAccJerk-mean-X
+Average-tBodyAccJerk-mean-Y
+Average-tBodyAccJerk-mean-Z
+Average-tBodyAccJerk-std-X
+Average-tBodyAccJerk-std-Y
+Average-tBodyAccJerk-std-Z
+Average-tBodyGyro-mean-X
+Average-tBodyGyro-mean-Y
+Average-tBodyGyro-mean-Z
+Average-tBodyGyro-std-X
+Average-tBodyGyro-std-Y
+Average-tBodyGyro-std-Z
+Average-tBodyGyroJerk-mean-X
+Average-tBodyGyroJerk-mean-Y
+Average-tBodyGyroJerk-mean-Z
+Average-tBodyGyroJerk-std-X
+Average-tBodyGyroJerk-std-Y
+Average-tBodyGyroJerk-std-Z
+Average-tBodyAccMag-mean
+Average-tBodyAccMag-std
+Average-tGravityAccMag-mean
+Average-tGravityAccMag-std
+Average-tBodyAccJerkMag-mean
+Average-tBodyAccJerkMag-std
+Average-tBodyGyroMag-mean
+Average-tBodyGyroMag-std
+Average-tBodyGyroJerkMag-mean
+Average-tBodyGyroJerkMag-std
+Average-fBodyAcc-mean-X
+Average-fBodyAcc-mean-Y
+Average-fBodyAcc-mean-Z
+Average-fBodyAcc-std-X
+Average-fBodyAcc-std-Y
+Average-fBodyAcc-std-Z
+Average-fBodyAccJerk-mean-X
+Average-fBodyAccJerk-mean-Y
+Average-fBodyAccJerk-mean-Z
+Average-fBodyAccJerk-std-X
+Average-fBodyAccJerk-std-Y
+Average-fBodyAccJerk-std-Z
+Average-fBodyGyro-mean-X
+Average-fBodyGyro-mean-Y
+Average-fBodyGyro-mean-Z
+Average-fBodyGyro-std-X
+Average-fBodyGyro-std-Y
+Average-fBodyGyro-std-Z
+Average-fBodyAccMag-mean
+Average-fBodyAccMag-std
+Average-fBodyBodyAccJerkMag-mean
+Average-fBodyBodyAccJerkMag-std
+Average-fBodyBodyGyroMag-mean
+Average-fBodyBodyGyroMag-std
+Average-fBodyBodyGyroJerkMag-mean:
+Average-fBodyBodyGyroJerkMag-std
